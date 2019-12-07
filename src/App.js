@@ -7,14 +7,14 @@ import axios from "axios";
 import Breakdown from "./components/Breakdown";
 const transactionRoute = "http://localhost:4000/transaction";
 const transactionsRoute = "http://localhost:4000/transactions";
-const minBalance = 500;
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       transactions: [],
-      balance: Number
+      balance: Number,
+      alert: Boolean
     };
   }
 
@@ -26,35 +26,41 @@ class App extends Component {
   async getData() {
     let transactions = await axios.get(transactionsRoute);
     let data = [...transactions.data];
-    this.setState({ transactions: data });
+    await this.setState({ transactions: data });
   }
 
   manageExpenses = async transaction => {
     await axios.post(transactionRoute, transaction);
     await this.getData();
-    this.manageBalance();
+    await this.manageBalance();
   };
 
   deleteTransaction = async (e, transaction) => {
-    await axios.delete(transactionRoute,{data:transaction});
+    await axios.delete(transactionRoute, { data: transaction });
     await this.getData();
-    this.manageBalance();
+    await this.manageBalance();
   };
-
-  manageBalance = () => {
+  deleteLastTransaction = async lastTransaction => {
+    await axios.delete(transactionRoute, { data: lastTransaction });
+  };
+  manageBalance = async () => {
     let transactionsArr = [...this.state.transactions];
+    const minBalance = 500;
     let balance = 0;
     transactionsArr.forEach(t => (balance += t.amount));
     if (balance < minBalance) {
-      this.displayAlert();
+      await this.setState({ alert: true });
+      let lastTransaction = transactionsArr[transactionsArr.length - 1];
+      await this.deleteLastTransaction(lastTransaction);
     } else {
-      this.setState({ balance: balance });
+      await this.setState({ alert: false });
+      await this.setState({ balance: balance });
     }
   };
 
-  displayAlert() {
-    return true;
-  }
+  displayAlert = () => {
+    return this.state.alert;
+  };
 
   render() {
     let transactions = this.state.transactions;
@@ -98,7 +104,7 @@ class App extends Component {
                 state={state}
                 handleChange={this.handleChange}
                 balance={balance}
-                displayAlert= {this.displayAlert}
+                displayAlert={this.displayAlert}
               />
             )}
           />

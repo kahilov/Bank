@@ -94,17 +94,18 @@ export default function Snackbars(props) {
   const inputs = props.input;
   const displayAlert = props.displayAlert;
   const withdraw = "withdraw";
-  const handleClick = (e, withdraw, displayAlert) => {
-    if(displayAlert){
-      setWarning(true)
-    }
+  const handleClick = async (e, withdraw) => {
     if (
       inputs.amountInput != "" &&
       inputs.categoryInput != "" &&
       inputs.vendorInput != ""
     ) {
-      setOpen(true);
-      manageExpenses(e, withdraw);
+       await manageExpenses(e, withdraw);
+      if (displayAlert() === false) {
+        setOpen(true);
+      } else {
+        setWarning(true);
+      }
     } else {
       setBad(true);
     }
@@ -116,7 +117,7 @@ export default function Snackbars(props) {
     }
     setOpen(false);
     setBad(false);
-    setWarning(false)
+    setWarning(false);
   };
 
   return (

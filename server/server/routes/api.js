@@ -21,7 +21,7 @@ router.post("/transaction", async function(req, res) {
 });
 
 router.delete("/transaction", async function(req, res) {
-  let transaction = req.data ;
+  let transaction = req.body ;
   transaction = await Transaction.find(transaction);
   let transactionId = transaction[0]._id
   await Transaction.findByIdAndDelete(transactionId)

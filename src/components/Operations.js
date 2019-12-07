@@ -31,7 +31,7 @@ class Operations extends Component {
     this.setState({ dateInput: date });
   };
 
-  manageExpenses = (e, withdraw) => {
+  manageExpenses = async (e, withdraw) => {
     let states = this.state;
     if (withdraw === "withdraw") {
       states.amountInput = -states.amountInput;
@@ -42,7 +42,7 @@ class Operations extends Component {
       vendor: states.vendorInput,
       category: states.categoryInput
     };
-    this.props.manageExpenses(transaction);
+    await this.props.manageExpenses(transaction);
     this.cleanState();
   };
 
