@@ -36,7 +36,6 @@ class App extends Component {
   };
 
   deleteTransaction = async (e, transaction) => {
-    console.log(transaction)
     await axios.delete(transactionRoute,{data:transaction});
     await this.getData();
     this.manageBalance();

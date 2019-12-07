@@ -133,7 +133,7 @@ export default function Snackbars(props) {
         variant="outlined"
         className={classes.margin}
         name="withdraw"
-        onClick={e => handleClick(e, withdraw, displayAlert)}
+        onClick={e => handleClick(e, withdraw)}
       >
         Withdraw
       </Button>
