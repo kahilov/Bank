@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 const string = "";
 
-
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
@@ -15,10 +14,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-
 export default function DatePickers(props) {
-  const formatDate = props.formatDate
+  const formatDate = props.formatDate;
   const classes = useStyles();
   const defaultValue = formatDate();
   let [value, setValue] = useState(string);

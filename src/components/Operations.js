@@ -11,7 +11,7 @@ class Operations extends Component {
       categoryInput: ""
     };
   }
-  
+
   componentDidMount() {
     this.handleDate(this.formatDate());
   }
