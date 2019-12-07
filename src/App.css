@@ -20,3 +20,41 @@
 .App-link {
   color: #09d3ac;
 }
+.main-links{
+  margin: 50px
+}
+.balance{
+  margin: 50px
+}
+.remove{
+  margin: 20px;
+  background-color:red
+}
+.add{
+  margin: 20px;
+  background-color:green
+}
+.input{
+  margin: 20px;
+}
+.fields{
+  margin: 20px;
+}
+.header{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  margin: 20px;
+  color: blue;
+}
+.red{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  margin: 20px;
+  color: red;
+}
+.green{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  margin: 20px;
+  color: green;
+}
